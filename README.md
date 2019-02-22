@@ -1,6 +1,6 @@
 # soalshift_modul1_a07
 
-1. Zip terenkripsi
+1. Zip terenkripsi <br>
    Permasalahan : Harus di unzip kemudian di decrypt base64
    Solusi : Mengunzip file dan melakukan decrypt serta meletakkan file yang sudah di decrypt pada directory lain dan mengatur crontab agar menjalankan task pada 14:14 14-2-yyyy atau setiap jum'at di bulan februari.
    
