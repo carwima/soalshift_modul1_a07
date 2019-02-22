@@ -1,9 +1,21 @@
 # soalshift_modul1_a07
 
 <h3>1. Zip terenkripsi</h3> <br>
-   Permasalahan : Harus di unzip kemudian di decrypt base64 <br>
-   Solusi : Mengunzip file dan melakukan decrypt serta meletakkan file yang sudah di decrypt pada directory lain dan mengatur crontab agar menjalankan task pada 14:14 14-2-yyyy atau setiap jum'at di bulan februari.
-   
+   Permasalahan : Diberikan sebuah file.zip yang harus di unzip kemudian di decrypt base64 <br>
+   Solusi : 
+   1. Mengunzip file dan melakukan decrypt pada file-file yang terdapat didalam file.zip.
+  (optional : membuat sebuah directory baru)
+   2. mengatur crontab agar menjalankan task pada 14:14 14-2-yyyy atau setiap jum'at di bulan februari.
+   <pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> unzip -q nature.zip -d ../Tugas_SISOP  
+ mkdir nature/nature  
+ i=0  
+ for image in "nature"/*;   
+ do  
+      i=$(($i+1))  
+      j=image$i  
+      base64 -d $image | xxd -r &gt; ~/Documents/Tugas_SISOP/nature/nature/$j.jpg  
+ done;  
+</code></pre>
 <h3>2. Query AWK</h3>
 
 <h3>3. Password Generator</h3>
