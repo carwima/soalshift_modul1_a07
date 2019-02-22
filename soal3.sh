@@ -1,6 +1,6 @@
 choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
 
-	 {   choose '0123456789'
+	 {  choose '0123456789'
 	    choose 'abcdefghijklmnopqrstuvwxyz'
 	    choose 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	    for ((j=0;j<12;j++))
@@ -8,13 +8,15 @@ choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }
 	        choose '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	    done
 	} | sort -R | awk '{printf "%s",$1}' >  Password/backup.txt;
-i=0
-for((;;))
+
+for((i=0;;))
 do
 	name=password$i.txt
-	if [ -f name ]
-		then i++
+	if [ -f Password/$name ]
+	   then
+		i=$(($i+1))
 	else {
+		echo "wowo"
 		cat Password/backup.txt > Password/password$i.txt
 		break
 		}
