@@ -7,6 +7,36 @@
 <h3>2. Query AWK</h3>
 
 <h3>3. Password Generator</h3>
+Permasalahan : Membuat password secara random mengandung huruf besar, huruf kecil, dan meyimpannya pada data file bernama password(int).txt
+Solusi : 
+a. Membuat password generator :<br>
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> choose() { echo ${1:RANDOM%${#1}:1} $RANDOM; }  
+       { choose '0123456789'  
+        choose 'abcdefghijklmnopqrstuvwxyz'  
+        choose 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'  
+        for ((j=0;j&lt;12;j++))  
+        do  
+          choose '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'  
+        done  
+      } | sort -R | awk '{printf "%s",$1}' &gt; Password/backup.txt;  
+</code></pre>
+Penjelasan : dibuat fungsi choose yang akan memilih karakter secara acak dari string yang disediakan, kemudian akan dirandom dengan -R dan disimpan pada penyimpanan sementara berupa backup.txt.
+
+b. Menyimpan password pada file bernama password(int).txt : 
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> for((i=0;;))  
+ do  
+      name=password$i.txt  
+      if [ -f Password/$name ]  
+        then  
+           i=$(($i+1))  
+      else {  
+           cat Password/backup.txt &gt; Password/password$i.txt  
+           break  
+           }  
+      fi  
+ done  
+</code></pre>
+Penjelasan : Dibuat loop yang akan memeriksa apakah file bernama password(int).txt sudah ada atau belum, ketika sudah ada, makan angka seri akan ditambah sampai file yang dicari tidak ditemukan.
 
 <h3>4. Enskripsi Backup syslog</h3>
 Permasalahan :
@@ -18,9 +48,12 @@ Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tangg
         e. dan buatkan juga bash script untuk dekripsinya.
 
 Solusi :
-Mengambil data jam untuk dijadikan angka sebagai shifting letter pada syslog dan menyimpannya pada file dengan format yang diminta menggunakan date.
+1. Mengambil data jam untuk dijadikan angka sebagai shifting letter pada syslog dan menyimpannya pada file dengan format yang diminta menggunakan date.
+2. Mengatur Crontab agar mengeksekusi perintah setiap jam.
 
 <h3>5. Backup Syslog Tertentu</h3>
-Permasalahan :
+Permasalahan : Mengambil data pada Syslog yang mengandung string 'Cron/CRON' dan mengabaikan yang mengandung Sudo.
 
 Solusi : Melakukan query pada AWK dan menuliskannya pada file yang diminta.
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> awk '/!sudo/&amp;&amp;/cron/||/CRON/' /var/log/syslog | awk 'NF &lt;13' &gt;&gt; ~/modul1/syslogno5.log  
+</code></pre>
