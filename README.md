@@ -1,13 +1,15 @@
 # soalshift_modul1_a07
 
-1. Permasalahan : Harus di unzip kemudian di decrypt base64
+#1. Zip terenkripsi
+   Permasalahan : Harus di unzip kemudian di decrypt base64
    Solusi : Mengunzip file dan melakukan decrypt serta meletakkan file yang sudah di decrypt pada directory lain dan mengatur crontab agar menjalankan task pada 14:14 14-2-yyyy atau setiap jum'at di bulan februari.
    
-2.
+#2. Query AWK
 
-3.
+#3. Password Generator
 
-4. Permasalahan :
+#4. 
+Permasalahan :
 
 Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal-bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai 	berikut:
         a. Huruf b adalah alfabet kedua, sedangkan saat ini waktu menunjukkan pukul 12, sehingga huruf b diganti dengan huruf alfabet yang memiliki urutan ke 12+2 = 14.
