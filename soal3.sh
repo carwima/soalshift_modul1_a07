@@ -16,7 +16,6 @@ do
 	   then
 		i=$(($i+1))
 	else {
-		echo "wowo"
 		cat Password/backup.txt > Password/password$i.txt
 		break
 		}
