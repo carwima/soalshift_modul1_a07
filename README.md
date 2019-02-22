@@ -20,15 +20,29 @@
    Permasalahan: 
 Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta
 untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv.
-Laporan yang diminta berupa:
+Laporan yang diminta berupa:<br>
       a. Tentukan negara dengan penjualan(quantity) terbanyak pada tahun
-      2012.
+      2012.<br>
       b. Tentukan tiga product line yang memberikan penjualan(quantity)
-      terbanyak pada soal poin a.
+      terbanyak pada soal poin a.<br>
       c. Tentukan tiga product yang memberikan penjualan(quantity)
       terbanyak berdasarkan tiga product line yang didapatkan pada soal
-      poin b.
-   Solusi: Melakukan Query pada awk dan mencari data yang diinginkan. Lalu melakukan count apabila data yang diinginkan benar. Setelah itu melakukan perbandingan
+      poin b.<br>
+   Solusi: Melakukan Query pada awk dan mencari data yang diinginkan. Lalu melakukan count apabila data yang diinginkan benar. Setelah itu melakukan perbandingan<br>
+Untuk 2a:
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> cat WA_Sales_Products_2012-14.csv | awk 'BEGIN{FS=","}{if($7==2012)arr[$1]+=$10}END{for(final in arr)print arr[final]","final}' | sort -rg | awk 'NR==1' | awk 'BEGIN{FS=","}{print $2}' &gt;&gt; 2a.txt  
+ cat 2a.txt  
+</code></pre>
+
+Untuk 2b:
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> cat WA_Sales_Products_2012-14.csv | awk 'BEGIN{FS=","}{if ($7==2012 &amp;&amp; $1=="United States")print $1","$7","$4","$10}' | awk '{FS=","}{arr[$3]+=$4} END {for (i in arr) print i, arr[i]}' | sort -rg |awk 'NR &lt; 4' |awk 'BEGIN{FS=","}{print $2}'&gt;&gt; 2b.txt  
+ cat 2b.txt  
+</code></pre>
+
+Untuk 2c:
+<pre  style="font-family:arial;font-size:12px;border:1px dashed #CCCCCC;width:99%;height:auto;overflow:auto;background:#f0f0f0;;background-image:URL(http://2.bp.blogspot.com/_z5ltvMQPaa8/SjJXr_U2YBI/AAAAAAAAAAM/46OqEP32CJ8/s320/codebg.gif);padding:0px;color:#000000;text-align:left;line-height:20px;"><code style="color:#000000;word-wrap:normal;"> cat WA_Sales_Products_2012-14.csv | awk 'BEGIN{FS=","}{if ($7==2012 &amp;&amp; $1=="United States")print $1","$7","$4","$10}' | awk '{FS=","}{arr[$3]+=$4} END {for (i in arr) print i, arr[i]}' | sort -rg |awk 'NR &lt; 4' |awk 'BEGIN{FS=","}{print $2}'&gt;&gt; 2b.txt  
+ cat 2b.txt  
+</code></pre>
 
 <h3>3. Password Generator</h3>
 Permasalahan : Membuat password secara random mengandung huruf besar, huruf kecil, dan meyimpannya pada data file bernama password(int).txt
