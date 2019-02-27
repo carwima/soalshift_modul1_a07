@@ -23,8 +23,7 @@
 #* * * * * ./move.sh
 
 #no1
-14 14 14 2 * ./soal1.sh
-14 14 * 2 5 ./soal1.sh
+14 14 14 2 5 ./soal1.sh
 
 #no4
 0 * * * * ./soal2.sh
