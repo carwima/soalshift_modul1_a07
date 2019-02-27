@@ -23,12 +23,12 @@
 #* * * * * ./move.sh
 
 #no1
-14 14 14 2 5 ./soal1.sh
+14 14 14 2 5 /bin/bash ~/Documents/Tugas_SISOP/soal1.sh
 
 #no4
-0 * * * * ./soal2.sh
+0 * * * * /bin/bash ~/Documents/Tugas_SISOP/soal4.sh
 
 #no5
-2-30/6 * * * * /bin/bash soal5.sh
+2-30/6 * * * * /bin/bash ~/Documents/Tugas_SISOP/soal5.sh
 
 
